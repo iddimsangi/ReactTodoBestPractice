@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.scss';
 import Form from './components/Form/Form'
+import TodoList from './components/TodoList/TodoList'
 function App() {
 
   return (
@@ -8,6 +9,7 @@ function App() {
       <header className="App-header">
       <div className="App-header-box">
           <Form/>
+          <TodoList/>
       </div>
       </header>
     </div>

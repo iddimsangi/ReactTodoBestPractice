@@ -1,16 +1,14 @@
 .form-box{
-    // border: 1px solid yellow;
-    // html, body {
-    //     display: flex;
-    //     justify-content: center;
-    //     font-family: Roboto, Arial, sans-serif;
-    //     font-size: 15px;
-    //     }
+   
         form {
         border: 5px solid #f1f1f1;
         margin-top: 2rem;
         }
         input[type=text], input[type=password] {
+            &:focus{
+                border: 1px solid #ccc;
+                outline: none;
+            }
         width: 100%;
         padding: 16px 8px;
         margin: 6px 0;
@@ -34,7 +32,7 @@
         padding: 14px 0;
         margin: 10px 0;
         border: none;
-        cursor: grab;
+        cursor: pointer;
         width: 48%;
         }
         h1 {
