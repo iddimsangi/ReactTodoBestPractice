@@ -3,14 +3,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  // border: 1px solid red;
+  background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: 2rem;
-  color: white;
+  color: rgb(61, 60, 60);
   &-box {
+    
     width: 70%;
     margin: 0 auto;
   }
