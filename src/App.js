@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.scss';
 import Form from './components/Form/Form'
 import TodoList from './components/TodoList/TodoList'
+import Profile from './components/Profile/Profile'
 function App() {
 
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="App-header-box">
           <Form/>
           <TodoList/>
+          <Profile/>
       </div>
       </header>
     </div>
