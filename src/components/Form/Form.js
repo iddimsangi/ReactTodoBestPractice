@@ -2,17 +2,36 @@ import React, {useEffect} from "react";
 import logo from '../../img/logo.svg'
 import { useNavigate } from "react-router-dom";
 import "./Form.scss";
-function Form({people,setpeople, personDetails, setpersonDetails}) {
+function Form({people,setpeople, personDetails, setpersonDetails, editPeople, setEditPeople}) {
+  const onUpdatePerson = (personDetails, ID) =>{
+
+   const editedPerson = people.map(person =>{
+return person.ID === ID ? {...personDetails} : person
+    });
+    setpeople(editedPerson);
+    setEditPeople("");
+  }
+  useEffect(() =>{
+    if(editPeople){
+      setpersonDetails({...editPeople})
+    }else{
+      setpersonDetails("")
+    }
+  }, [setpersonDetails, editPeople])
   let navigate = useNavigate()
     const onSubmitForm = (e) => {
         e.preventDefault();
-        setpeople([ {ID:new Date(), ...personDetails}, ...people])
-   
-        setpersonDetails({
-            username:'',
-            email:'',
-            password:''
-        })
+        if(!editPeople){
+          setpeople([ {ID:new Date(), ...personDetails}, ...people])
+          setpersonDetails({
+              username:'',
+              email:'',
+              password:''
+          })
+     
+        }else{
+          onUpdatePerson(personDetails, editPeople.ID);
+        }
         navigate("/list")
     }
     useEffect(() =>{
@@ -27,7 +46,7 @@ function Form({people,setpeople, personDetails, setpersonDetails}) {
   return (
     <div className="form-box">
       <form onSubmit={onSubmitForm}>
-        <h1>SIGN UP</h1>
+        <h1>{editPeople ?"UPDATE":"SIGN UP"}</h1>
         <div className="icon">
         <img src={logo} alt="logo-svg"/>
       </div>
@@ -78,7 +97,7 @@ function Form({people,setpeople, personDetails, setpersonDetails}) {
             />
           </div>
           <button type="submit">
-            <strong>SIGN UP</strong>
+            <strong>{editPeople ? "Update" : "sign up"}</strong>
           </button>
           <div className="container">
             <label>

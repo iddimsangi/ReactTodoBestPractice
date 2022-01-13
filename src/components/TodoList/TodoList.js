@@ -3,12 +3,21 @@ import check from "../../img/checked.png"
 import edit from "../../img/edit.png"
 import trush from "../../img/trash-bin.png"
 import "./TodoList.scss";
-function TodoList({people, setpeople}) {
+import { useNavigate } from "react-router-dom";
+function TodoList({people, setpeople, setEditPeople}) {
+  const navigate = useNavigate()
   const onDeleteHandler = ({ID}) =>{
     const deletedPerson = people.filter(prs => {
       return prs.ID !== ID
     })
     setpeople(deletedPerson)
+  }
+  const onEditPeopleHandler = ({ID}) =>{
+    const updatedPerson = people.find((person) =>{
+      navigate("/");
+      return person.ID === ID
+    })
+    setEditPeople(updatedPerson);
   }
   return (
     <div>
@@ -30,7 +39,7 @@ function TodoList({people, setpeople}) {
             <img src={check} alt="check"/>
             </span>
             <span class="leaderboard__value">
-            <img src={edit} alt="edit"/>
+            <img src={edit} alt="edit" onClick={() => onEditPeopleHandler(pers)}/>
             </span>
             <span class="leaderboard__value">
             <img src={trush} alt="trush" onClick={() => onDeleteHandler(pers)}/>
