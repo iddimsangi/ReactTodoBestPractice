@@ -1,55 +1,59 @@
-import React, {useEffect} from "react";
-import logo from '../../img/logo.svg'
+import React, { useEffect } from "react";
+import logo from "../../img/logo.svg";
 import { useNavigate } from "react-router-dom";
 import "./Form.scss";
-function Form({people,setpeople, personDetails, setpersonDetails, editPeople, setEditPeople}) {
-  const onUpdatePerson = (personDetails, ID) =>{
-
-   const editedPerson = people.map(person =>{
-return person.ID === ID ? {...personDetails} : person
+function Form({
+  people,
+  setpeople,
+  personDetails,
+  setpersonDetails,
+  editPeople,
+  setEditPeople,
+}) {
+  const onUpdatePerson = (personDetails, ID) => {
+    const editedPerson = people.map((person) => {
+      return person.ID === ID ? { ...personDetails } : person;
     });
     setpeople(editedPerson);
     setEditPeople("");
-  }
-  useEffect(() =>{
-    if(editPeople){
-      setpersonDetails({...editPeople})
-    }else{
-      setpersonDetails("")
+  };
+  useEffect(() => {
+    if (editPeople) {
+      setpersonDetails({ ...editPeople });
+    } else {
+      setpersonDetails("");
     }
-  }, [setpersonDetails, editPeople])
-  let navigate = useNavigate()
-    const onSubmitForm = (e) => {
-        e.preventDefault();
-        if(!editPeople){
-          setpeople([ {ID:new Date(), ...personDetails}, ...people])
-          setpersonDetails({
-              username:'',
-              email:'',
-              password:''
-          })
-     
-        }else{
-          onUpdatePerson(personDetails, editPeople.ID);
-        }
-        navigate("/list")
+  }, [setpersonDetails, editPeople]);
+  let navigate = useNavigate();
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    if (!editPeople) {
+      setpeople([{ ID: new Date(), ...personDetails }, ...people]);
+      setpersonDetails({
+        username: "",
+        email: "",
+        password: "",
+      });
+    } else {
+      onUpdatePerson(personDetails, editPeople.ID);
     }
-    useEffect(() =>{
-      console.log(people);
-    },[people])
-   
+    navigate("/list");
+  };
+  useEffect(() => {
+    console.log(people);
+  }, [people]);
 
-    // useEffect(() =>{
-    //     console.log(people)
-    // }, [people])
-  
+  // useEffect(() =>{
+  //     console.log(people)
+  // }, [people])
+
   return (
     <div className="form-box">
       <form onSubmit={onSubmitForm}>
-        <h1>{editPeople ?"UPDATE":"SIGN UP"}</h1>
+        <h1>{editPeople ? "UPDATE" : "SIGN UP"}</h1>
         <div className="icon">
-        <img src={logo} alt="logo-svg"/>
-      </div>
+          <img src={logo} alt="logo-svg" />
+        </div>
         <div className="formcontainer">
           <div className="container">
             <label htmlFor="uname">
@@ -60,11 +64,12 @@ return person.ID === ID ? {...personDetails} : person
               placeholder="Enter Username"
               name="uname"
               value={personDetails.username}
-              onChange={(e) =>{setpersonDetails({
+              onChange={(e) => {
+                setpersonDetails({
                   ...personDetails,
-                  username:e.target.value
-              })
-            }}
+                  username: e.target.value,
+                });
+              }}
               required
             />
             <label htmlFor="mail">
@@ -75,10 +80,12 @@ return person.ID === ID ? {...personDetails} : person
               placeholder="Enter E-mail"
               name="mail"
               value={personDetails.email}
-              onChange={(e) =>{setpersonDetails({
-                ...personDetails,
-                email:e.target.value
-            })}}
+              onChange={(e) => {
+                setpersonDetails({
+                  ...personDetails,
+                  email: e.target.value,
+                });
+              }}
               required
             />
             <label htmlFor="psw">
@@ -89,10 +96,12 @@ return person.ID === ID ? {...personDetails} : person
               placeholder="Enter Password"
               name="psw"
               value={personDetails.password}
-              onChange={(e) =>{setpersonDetails({
-                ...personDetails,
-                password:e.target.value
-            })}}
+              onChange={(e) => {
+                setpersonDetails({
+                  ...personDetails,
+                  password: e.target.value,
+                });
+              }}
               required
             />
           </div>

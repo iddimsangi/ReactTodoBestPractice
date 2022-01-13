@@ -58,6 +58,7 @@
       padding: 15px 15px 20px;
       display: grid;
       row-gap: 8px;
+
     }
     
     &__profile {
@@ -115,7 +116,15 @@
       }
     }
   }
-   
+   .lbtn{
+    width: 40%;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background-color: #35d8ac;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+   }
   // bare minimuu styles
   
   .leaderboard {

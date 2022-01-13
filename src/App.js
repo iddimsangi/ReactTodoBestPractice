@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(people));
   }, [people]);
-  console.log(editPeople)
+  console.log(editPeople);
   return (
     <BrowserRouter>
       <div className="App">
@@ -36,15 +36,21 @@ function App() {
                     setpeople={setpeople}
                     personDetails={personDetails}
                     setpersonDetails={setpersonDetails}
-                    editPeople ={editPeople}
-                    setEditPeople ={setEditPeople}
+                    editPeople={editPeople}
+                    setEditPeople={setEditPeople}
                   />
                 }
               />
               <Route
                 path="/list"
                 exact
-                element={<TodoList people={people} setEditPeople ={setEditPeople} setpeople={setpeople} />}
+                element={
+                  <TodoList
+                    people={people}
+                    setEditPeople={setEditPeople}
+                    setpeople={setpeople}
+                  />
+                }
               />
             </Routes>
 
