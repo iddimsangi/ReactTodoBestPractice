@@ -30,7 +30,7 @@ useEffect(() =>{
       <div className="App-header-box">
         <Routes>
             <Route path="/" exact element={<Form people={people} setpeople={setpeople} personDetails={personDetails} setpersonDetails={setpersonDetails}/>}/>
-            <Route path="/list" exact element={ <TodoList/>}/>
+            <Route path="/list" exact element={ <TodoList people={people} setpeople={setpeople}/>}/>
         </Routes>
           
           {/* <TodoList/>
