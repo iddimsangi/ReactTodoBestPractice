@@ -5,12 +5,25 @@ $standard: 10px;
 $card-height: 450px;
 $card-width: 300px;
 
-// body {
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
+
+.front__text-hover {
+  position: relative;
+  top: 10px;
+  font-size: 10px;
+  color: $red;
+  backface-visibility: hidden;
+
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  cursor: pointer;
+  border: 2px solid $red;
+  padding: 8px 15px;
+  border-radius: 30px;
+
+  background: $red;
+  color: $white;
+}
 
 .background {
   position: absolute;
@@ -166,24 +179,10 @@ $card-width: 300px;
     color: gray;
   }
 
-  .front__text-hover {
-    position: relative;
-    top: 10px;
-    font-size: 10px;
-    color: $red;
-    backface-visibility: hidden;
-
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .4px;
-
-    border: 2px solid $red;
-    padding: 8px 15px;
-    border-radius: 30px;
-
-    background: $red;
-    color: $white;
-  }
+.btn-color{
+  background-color: orange;
+  border: 2px solid orange;
+}
 }
 
 .back {
@@ -236,6 +235,7 @@ $card-width: 300px;
   top: 0;
   left: 0;
   transition: all 200ms ease-in-out;
+  color: red;
 }
 
 .fab:hover {

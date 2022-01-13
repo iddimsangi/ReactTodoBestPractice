@@ -1,12 +1,34 @@
-import React from "react";
+import React, {useEffect} from "react";
 import logo from '../../img/logo.svg'
+import { useNavigate } from "react-router-dom";
 import "./Form.scss";
-function Form() {
+function Form({people,setpeople, personDetails, setpersonDetails}) {
+  let navigate = useNavigate()
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        setpeople([ {ID:new Date(), ...personDetails}, ...people])
+   
+        setpersonDetails({
+            username:'',
+            email:'',
+            password:''
+        })
+        navigate("/list")
+    }
+    useEffect(() =>{
+      console.log(people);
+    },[people])
+   
+
+    // useEffect(() =>{
+    //     console.log(people)
+    // }, [people])
+  
   return (
     <div className="form-box">
-      <form>
+      <form onSubmit={onSubmitForm}>
         <h1>SIGN UP</h1>
-        <div class="icon">
+        <div className="icon">
         <img src={logo} alt="logo-svg"/>
       </div>
         <div className="formcontainer">
@@ -18,6 +40,12 @@ function Form() {
               type="text"
               placeholder="Enter Username"
               name="uname"
+              value={personDetails.username}
+              onChange={(e) =>{setpersonDetails({
+                  ...personDetails,
+                  username:e.target.value
+              })
+            }}
               required
             />
             <label htmlFor="mail">
@@ -27,6 +55,11 @@ function Form() {
               type="text"
               placeholder="Enter E-mail"
               name="mail"
+              value={personDetails.email}
+              onChange={(e) =>{setpersonDetails({
+                ...personDetails,
+                email:e.target.value
+            })}}
               required
             />
             <label htmlFor="psw">
@@ -36,6 +69,11 @@ function Form() {
               type="password"
               placeholder="Enter Password"
               name="psw"
+              value={personDetails.password}
+              onChange={(e) =>{setpersonDetails({
+                ...personDetails,
+                password:e.target.value
+            })}}
               required
             />
           </div>
