@@ -6,12 +6,13 @@ import "./TodoList.scss";
 import { useNavigate, Link } from "react-router-dom";
 function TodoList({ people, setpeople, setEditPeople }) {
   let navigate = useNavigate();
-  
+
   // backToForm()
   const onDeleteHandler = ({ ID }) => {
     const deletedPerson = people.filter((prs) => {
       return prs.ID !== ID;
     });
+    // console.log(deletedPerson)
     setpeople(deletedPerson);
   };
   const onEditPeopleHandler = (pers) => {
@@ -19,40 +20,40 @@ function TodoList({ people, setpeople, setEditPeople }) {
       navigate("/");
       return person === pers;
     });
-  // const onEditPeopleHandler = ({ ID }) => {
-  //   const updatedPerson = people.find((person) => {
-  //     navigate("/");
-  //     return person.ID === ID;
-  //   });
+    // const onEditPeopleHandler = ({ ID }) => {
+    //   const updatedPerson = people.find((person) => {
+    //     navigate("/");
+    //     return person.ID === ID;
+    //   });
     setEditPeople(updatedPerson);
   };
   return (
     <div>
       {people.map((pers) => {
         return (
-          <main class="leaderboard__profiles">
-            <article class="leaderboard__profile">
+          <main key={pers.ID} className="leaderboard__profiles">
+            <article className="leaderboard__profile">
               <img
                 src="https://randomuser.me/api/portraits/men/97.jpg"
                 alt="Dustin Moskovitz"
-                class="leaderboard__picture"
+                className="leaderboard__picture"
               />
               <div className="leaderboard__profile-box">
-                <span class="leaderboard__name">{pers.username}</span>
-                <span class="leaderboard__name--email">{pers.email}</span>
+                <span className="leaderboard__name">{pers.username}</span>
+                <span className="leaderboard__name--email">{pers.email}</span>
               </div>
               <div>
-                <span class="leaderboard__value">
+                <span className="leaderboard__value">
                   <img src={check} alt="check" />
                 </span>
-                <span class="leaderboard__value">
+                <span className="leaderboard__value">
                   <img
                     src={edit}
                     alt="edit"
                     onClick={() => onEditPeopleHandler(pers)}
                   />
                 </span>
-                <span class="leaderboard__value">
+                <span className="leaderboard__value">
                   <img
                     src={trush}
                     alt="trush"
@@ -61,15 +62,18 @@ function TodoList({ people, setpeople, setEditPeople }) {
                 </span>
               </div>
             </article>
-          
           </main>
         );
       })}
-            {/* <button onClick={() => backToForm} className="lbtn" >Back</button> */}
-      <Link to="/">
-      <button  className="lbtn" >Back</button>
+      {/* <button onClick={() => backToForm} className="lbtn" >Back</button> */}
+      <Link
+        to="/"
+        state={{
+          state:people
+        }}
+      >
+        <button className="lbtn">Back</button>
       </Link>
-    
     </div>
   );
 }

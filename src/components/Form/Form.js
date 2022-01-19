@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import logo from "../../img/logo.svg";
 import { useNavigate } from "react-router-dom";
 import "./Form.scss";
+import { useLocation } from 'react-router-dom'
 function Form({
   people,
   setpeople,
@@ -10,9 +11,11 @@ function Form({
   editPeople,
   setEditPeople,
 }) {
+  const { state } = useLocation();
+  console.log(state);
   const onChangeHandler = (e) =>{
     const{name, value} = e.target;
-  return setpersonDetails( {
+  return setpersonDetails({
     ...personDetails,
     [name]:value
     })
@@ -24,6 +27,7 @@ function Form({
     setpeople(editedPerson);
     setEditPeople("");
   };
+
   useEffect(() => {
     if (editPeople) {
       setpersonDetails({ ...editPeople });
@@ -43,6 +47,11 @@ function Form({
       });
     } else {
       onUpdatePerson(personDetails, editPeople.ID);
+      setpersonDetails({
+        username: "",
+        email: "",
+        password: "",
+      });
     }
     navigate("/list");
   };
@@ -120,7 +129,7 @@ function Form({
           </button>
           <div className="container">
             <label>
-              <input type="checkbox" checked="checked" name="remember" />{" "}
+              <input type="checkbox" defaultChecked="checked" name="remember" />{" "}
               Remember me
             </label>
             <span className="psw">

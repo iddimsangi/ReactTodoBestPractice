@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(people));
   }, [people]);
-  console.log(editPeople);
   return (
     <BrowserRouter>
       <div className="App">
