@@ -14,11 +14,16 @@ function TodoList({ people, setpeople, setEditPeople }) {
     });
     setpeople(deletedPerson);
   };
-  const onEditPeopleHandler = ({ ID }) => {
+  const onEditPeopleHandler = (pers) => {
     const updatedPerson = people.find((person) => {
       navigate("/");
-      return person.ID === ID;
+      return person === pers;
     });
+  // const onEditPeopleHandler = ({ ID }) => {
+  //   const updatedPerson = people.find((person) => {
+  //     navigate("/");
+  //     return person.ID === ID;
+  //   });
     setEditPeople(updatedPerson);
   };
   return (

@@ -10,6 +10,13 @@ function Form({
   editPeople,
   setEditPeople,
 }) {
+  const onChangeHandler = (e) =>{
+    const{name, value} = e.target;
+  return setpersonDetails( {
+    ...personDetails,
+    [name]:value
+    })
+  }
   const onUpdatePerson = (personDetails, ID) => {
     const editedPerson = people.map((person) => {
       return person.ID === ID ? { ...personDetails } : person;
@@ -62,30 +69,32 @@ function Form({
             <input
               type="text"
               placeholder="Enter Username"
-              name="uname"
+              name="username"
               value={personDetails.username}
-              onChange={(e) => {
-                setpersonDetails({
-                  ...personDetails,
-                  username: e.target.value,
-                });
-              }}
+              onChange={onChangeHandler}
+              // onChange={(e) => {
+              //   setpersonDetails({
+              //     ...personDetails,
+              //     username: e.target.value,
+              //   });
+              // }}
               required
             />
             <label htmlFor="mail">
               <strong>E-mail</strong>
             </label>
             <input
-              type="text"
+              type="email"
               placeholder="Enter E-mail"
-              name="mail"
+              name="email"
               value={personDetails.email}
-              onChange={(e) => {
-                setpersonDetails({
-                  ...personDetails,
-                  email: e.target.value,
-                });
-              }}
+              onChange={onChangeHandler}
+              // onChange={(e) => {
+              //   setpersonDetails({
+              //     ...personDetails,
+              //     email: e.target.value,
+              //   });
+              // }}
               required
             />
             <label htmlFor="psw">
@@ -94,14 +103,15 @@ function Form({
             <input
               type="password"
               placeholder="Enter Password"
-              name="psw"
+              name="password"
               value={personDetails.password}
-              onChange={(e) => {
-                setpersonDetails({
-                  ...personDetails,
-                  password: e.target.value,
-                });
-              }}
+              onChange={onChangeHandler}
+              // onChange={(e) => {
+              //   setpersonDetails({
+              //     ...personDetails,
+              //     password: e.target.value,
+              //   });
+              // }}
               required
             />
           </div>
